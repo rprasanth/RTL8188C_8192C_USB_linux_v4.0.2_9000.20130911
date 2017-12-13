@@ -1577,8 +1577,17 @@ static int __init rtw_drv_entry(void)
 	RT_TRACE(_module_hci_intfs_c_,_drv_err_,("+rtw_drv_entry\n"));
 
 	DBG_871X(DRV_NAME " driver version=%s\n", DRIVERVERSION);
+
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 15, 0)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdate-time"
+#endif
 	DBG_871X("build time: %s %s\n", __DATE__, __TIME__);
 
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 15, 0)
+#pragma GCC diagnostic pop
+#endif
+	
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,24))
 	//console_suspend_enabled=0;
 #endif
